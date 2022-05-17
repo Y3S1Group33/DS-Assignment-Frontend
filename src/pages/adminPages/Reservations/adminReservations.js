@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function Reservations() {
   const [Reservations, setReservations] = useState([]);
-  const [id, setId] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/reservations")
