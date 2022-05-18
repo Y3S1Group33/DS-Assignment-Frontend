@@ -38,6 +38,7 @@ function App() {
             <Route exact path="/payments" element={<PaymentDashboard />} />
             <Route exact path="/payments/local" element={<LocalPaymentGateway />} />
             <Route exact path="/payments/stripe" element={<StripePaymentGateway />} />
+            <Route exact path="/home" element={<Home />} />
         </Routes>
       </Router>
 </div>

@@ -46,7 +46,7 @@ const PaymentDashboard = () => {
                                     </button>
                                 </td>
                                 <td>
-                                    <button  className="btn btn btn-check">
+                                    <button  className="btn btn btn-submit">
                                         Update
                                     </button>
                                 </td>
