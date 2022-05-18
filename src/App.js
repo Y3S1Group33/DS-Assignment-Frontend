@@ -13,7 +13,6 @@ import AdminPanel from "./pages/adminPanel"
 import AdminReservations from "./pages/adminPages/Reservations/adminReservations"
 import AdminReservationsUpdate from "./pages/adminPages/Reservations/updateReservations"
 import PaymentDashboard from "./pages/adminPages/Payments/PaymentDashboard";
-import PaymentDelete from "./pages/adminPages/Payments/PaymentDelete";
 import LocalPaymentGateway from "./pages/clientPages/LocalPaymentGateway";
 import StripePaymentGateway from "./pages/clientPages/StripePaymentGateway";
 
@@ -39,6 +38,7 @@ function App() {
             <Route exact path="/payments" element={<PaymentDashboard />} />
             <Route exact path="/payments/local" element={<LocalPaymentGateway />} />
             <Route exact path="/payments/stripe" element={<StripePaymentGateway />} />
+            <Route exact path="/home" element={<Home />} />
         </Routes>
       </Router>
 </div>
