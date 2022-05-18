@@ -12,16 +12,17 @@ import Profile from "./pages/profile"
 import AdminPanel from "./pages/adminPanel"
 import AdminReservations from "./pages/adminPages/Reservations/adminReservations"
 import AdminReservationsUpdate from "./pages/adminPages/Reservations/updateReservations"
+import PaymentDashboard from "./pages/adminPages/Payments/PaymentDashboard";
+import PaymentDelete from "./pages/adminPages/Payments/PaymentDelete";
 
 
 
 function App() {
 
-
-  
   return (
     <div>
       <NavBar />
+
       <Router>
         <Routes>
         <Route exact path="/login" element={<Login />} />
@@ -33,6 +34,8 @@ function App() {
         <Route exact path="/admin" element={<AdminPanel />} />
         <Route exact path="/adminReservations" element={<AdminReservations />} />
         <Route exact path="/adminUpdateReservations/:id" element={<AdminReservationsUpdate />} />
+            <Route exact path="/payments" element={<PaymentDashboard />} />
+            <Route exact path="/payments/delete" element={<PaymentDelete />} />
         </Routes>
       </Router>
 </div>
