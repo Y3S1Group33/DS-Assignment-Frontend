@@ -32,7 +32,7 @@ export default function AdminPanel() {
   </div>
 
   <div class="card">
-    <img class="card-img-top" src={imageUser} alt="Card image cap" />
+    <img class="card-img-top" href="/adminReservations" src={imageUser} alt="Card image cap" />
     <div class="card-body">
       <h5 class="card-title">Reservations Management</h5>
       <p class="card-text">Number of reservations: {Reservations.length}</p>

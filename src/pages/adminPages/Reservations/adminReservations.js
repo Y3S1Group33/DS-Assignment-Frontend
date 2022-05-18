@@ -41,11 +41,10 @@ export default function Reservations() {
                 <td>{item.date}</td>
                 <td>
                   <button  className="btn btn-success">
-                  <Link to={`/adminUpdateReservations/${item.id}`} className="btn btn-success">Update
+                  <Link to={`/adminUpdateReservations/${item.id}`} className="btn btn-success">View Details
                             </Link>
                   </button>
-                  <button className="btn btn-danger">Delete
-                  </button>
+                  
                 </td>
               </tr>
             );

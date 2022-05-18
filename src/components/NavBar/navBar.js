@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function NavBar() {
+  const [loggedUser, setLoggedUser] = useState([]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setLoggedUser(user);
+    }
+  }, []);
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,7 +32,6 @@ function NavBar() {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              
               <li className="nav-item">
                 <a className="nav-link" aria-current="page" href="/">
                   Home
@@ -36,24 +44,42 @@ function NavBar() {
                 </a>
               </li>
 
+              {(loggedUser.role == "Admin") && (
               <li className="nav-item">
                 <a className="nav-link" href="/admin">
                   Admin panel
                 </a>
               </li>
-             
+              )}
+              
+              <li className="nav-item">
+                <a className="nav-link" href="/login">
+                  Login
+                </a>
+              </li>
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
+            {(loggedUser) && (
+            <div className="dropdown">
+              <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {loggedUser.firstName}
               </button>
-            </form>
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a className="dropdown-item" href="/profile">
+                  Profile
+                </a>
+                <a className="dropdown-item" href="/logout">
+                  Logout
+                </a>
+              </div>
+            </div>
+            )}
           </div>
         </div>
       </nav>

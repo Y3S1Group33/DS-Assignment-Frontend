@@ -1,10 +1,9 @@
-import React from 'react'
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function UpdateReservations() {
-
   const params = useParams();
 
   const [reservation, setReservation] = useState("");
@@ -25,6 +24,24 @@ function UpdateReservations() {
     date: date,
   };
 
+  let handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let res = await axios.put(
+        `http://localhost:8080/reservations?id=${params.id}`,
+        data
+      );
+      if (res) {
+        console.log(data);
+        alert("Reservation updated successfully");
+      } else {
+        alert("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     fetch(`http://localhost:8080/reservations/getById?id=${params.id}`)
       .then((response) => response.json())
@@ -34,85 +51,81 @@ function UpdateReservations() {
     console.log(reservation);
   }, []);
 
+  const onDelete = () => {
+    if (window.confirm("Do you want to delete this")) {
+      axios
+        .delete(`http://localhost:8080/reservations?id=${params.id}`)
+        .then((res) => {
+          alert("Deleted successfuly");
+          window.location.href = "/adminReservations";
+        });
+    } else {
+      alert("Record not deleted");
+    }
+  };
 
-    let handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-          let res = await axios.put(`http://localhost:8080/reservations?id=${params.id}`, data);
-          if (res) {
-            console.log(data);
-            alert("Reservation updated successfully");
-          } else {
-            alert("Some error occured");
-          }
-        } catch (err) {
-          console.log(err);
-        }
-      };
+  return (
+    <div className="container">
+      <h1 className="text-center">Update Reservation</h1>
 
-    return (
-        <div className="container">
-           <h1 className="text-center">Update Reservation</h1>
-
-           <form className="form" onSubmit={handleSubmit}>
-
+      <form className="form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label >User ID</label>
+          <label>User ID</label>
           <input
             type="text"
             className="form-control"
             id="userId"
             value={reservation.userId}
             onChange={(e) => setUserId(e.target.value)}
-            readOnly />
+            readOnly
+          />
         </div>
-
         <div className="form-group">
-          <label >Room Type</label>
+          <label>Room Type</label>
           <input
             type="text"
             className="form-control"
             id="roomType"
             placeholder={reservation.roomType}
             onChange={(e) => setRoomType(e.target.value)}
-            required />
+            required
+          />
         </div>
-
         <div className="form-group">
-          <label >Description</label>
+          <label>Description</label>
           <textarea
             className="form-control"
             id="description"
             rows="3"
             placeholder={reservation.description}
             onChange={(e) => setDescription(e.target.value)}
-            required></textarea>
+            required
+          ></textarea>
         </div>
-
         <div className="form-group">
-          <label >Number of rooms</label>
+          <label>Number of rooms</label>
           <input
             className="form-control"
             id="numberOfRooms"
             rows="3"
             placeholder={reservation.numberOfRooms}
             onChange={(e) => setNumberOfRooms(e.target.value)}
-            required />
+            required
+          />
         </div>
-
         <div className="form-group">
-          <label >Price</label>
+          <label>Price</label>
           <input
             className="form-control"
             id="price"
             rows="3"
             placeholder={reservation.price}
             onChange={(e) => setPrice(e.target.value)}
-            required />
+            required
+          />
         </div>
-
         <div className="form-group">
-          <label >Date</label>
+          <label>Date</label>
           <input
             type="text"
             className="form-control"
@@ -120,16 +133,27 @@ function UpdateReservations() {
             rows="3"
             placeholder={reservation.date}
             onChange={(e) => setDate(e.target.value)}
-            required />
+            required
+          />
         </div>
-      <br></br>
-        <button type="submit" className="btn btn-primary">Update Reservation</button>
-       
+        <br></br>
+        <button type="submit" className="btn btn-success">
+          Update Reservation
+        </button>
+        &nbsp;
       </form>
-      <br></br><br></br>
-      <a href="/adminReservations"><button className="btn btn-primary">Go Back</button></a>
-        </div>
-    )
+      <br></br>
+      <br></br>
+      <button className="btn btn-danger" onClick={onDelete}>
+        <a className="btn btn-danger">Delete Reservation</a>
+      </button>
+      <br></br>
+      <br></br>
+      <a href="/adminReservations">
+        <button className="btn btn-primary">Go Back</button>
+      </a>
+    </div>
+  );
 }
 
-export default UpdateReservations
+export default UpdateReservations;
