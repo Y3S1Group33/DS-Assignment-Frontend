@@ -5,9 +5,7 @@ import { useParams } from "react-router-dom";
 
 function UpdateReservations() {
   const params = useParams();
-
   const [reservation, setReservation] = useState("");
-
   const [userId, setUserId] = useState("");
   const [roomType, setRoomType] = useState("");
   const [description, setDescription] = useState("");
