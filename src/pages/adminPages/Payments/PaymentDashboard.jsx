@@ -13,6 +13,13 @@ const PaymentDashboard = () => {
             console.log(err);
         })
     }, [])
+    const deleteRecord=(e)=>{
+        let id=e.currentTarget.value;
+        axios.delete(`http://localhost:8080/payments?id=${id}`).then(alert("success")).then(window.location.href="/payments").catch(err=>{
+            console.log(err)
+        })
+
+    }
     return (
         <div>
             <h1 className="text-center">Payment Dashboard</h1>
@@ -25,6 +32,8 @@ const PaymentDashboard = () => {
                         <th scope="col">Credit card Numbere</th>
                         <th scope="col">CVC</th>
                         <th scope="col">EXP Date</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
 
                     </tr>
 </thead>
@@ -39,17 +48,21 @@ const PaymentDashboard = () => {
                                 <td>{payment.expDate}</td>
 
                                 <td>
-                                    <button  className="btn btn btn-danger">
+                                    <button onClick={deleteRecord} value={payment.id}>Delete me</button>
+                                    {/*<button  className="btn btn btn-danger">*/}
 
-                                        <Link to={`/PaymentDelete/${payment.id}`} className="btn btn-success">Delete
-                                        </Link>
-                                    </button>
+                                    {/*    <Link to={`/PaymentDelete/${payment.id}`} className="btn btn-success">Delete*/}
+                                    {/*    </Link>*/}
+                                    {/*</button>*/}
                                 </td>
                                 <td>
-                                    <button  className="btn btn btn-submit">
-                                        Update
+                                    <button className="btn btn-success"  >
+                                        <Link to={`/paymentUpdate/${payment.id}`} >Update
+                                        </Link>
                                     </button>
+
                                 </td>
+
 
                             </tr>
                             </tbody>
