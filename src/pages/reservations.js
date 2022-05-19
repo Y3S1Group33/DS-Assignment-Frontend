@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from 'react'
+import axios from 'axios';
+import { useState } from "react";
 
 function Reservations() {
+
   const [userId, setUserId] = useState("");
   const [roomType, setRoomType] = useState("");
   const [description, setDescription] = useState("");
@@ -17,8 +19,6 @@ function Reservations() {
     price: price,
     date: date,
   };
-  
-  
 
     let handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,32 +32,30 @@ function Reservations() {
             alert("Some error occured");
           }
         } catch (err) {
+          alert("Reservation date already taken! Try another one");
           console.log(err);
         }
       };
 
-    
-  };
+    return (
+        <div className="container">
+           <h1 className="text-center">Add Reservation</h1>
 
-  return (
-    <div className="container">
-      <h1 className="text-center">Add Reservation</h1>
+           <form className="form" onSubmit={handleSubmit}>
 
-      <form className="form" onSubmit={HandleSubmit}>
         <div className="form-group">
-          <label>User ID</label>
+          <label >User ID</label>
           <input
             type="text"
             className="form-control"
             id="userId"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
-            required
-          />
+            required />
         </div>
 
         <div className="form-group">
-          <label>Room Type</label>
+          <label >Room Type</label>
           <input
             placeholder="AC or Non AC"
             type="text"
@@ -65,48 +63,44 @@ function Reservations() {
             id="roomType"
             value={roomType}
             onChange={(e) => setRoomType(e.target.value)}
-            required
-          />
+            required />
         </div>
 
         <div className="form-group">
-          <label>Description</label>
+          <label >Description</label>
           <textarea
             className="form-control"
             id="description"
             rows="3"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
-          ></textarea>
+            required></textarea>
         </div>
 
         <div className="form-group">
-          <label>Number of rooms</label>
+          <label >Number of rooms</label>
           <input
             className="form-control"
             id="numberOfRooms"
             rows="3"
             value={numberOfRooms}
             onChange={(e) => setNumberOfRooms(e.target.value)}
-            required
-          />
+            required />
         </div>
 
         <div className="form-group">
-          <label>Price</label>
+          <label >Price</label>
           <input
             className="form-control"
             id="price"
             rows="3"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            required
-          />
+            required />
         </div>
 
         <div className="form-group">
-          <label>Date</label>
+          <label >Date</label>
           <input
             type="date"
             className="form-control"
@@ -114,8 +108,7 @@ function Reservations() {
             rows="3"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            required
-          />
+            required />
         </div>
       <br></br>
                <button type="submit" className="btn btn-primary">Add Reservation</button>
@@ -127,4 +120,4 @@ function Reservations() {
     )
 }
 
-export default Reservations;
+export default Reservations
