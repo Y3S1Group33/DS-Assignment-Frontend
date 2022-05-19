@@ -7,11 +7,7 @@ import Login from "./pages/login"
 import Register from "./pages/register"
 import Logout from "./pages/logout"
 import Profile from "./pages/profile"
-<<<<<<< HEAD
-import Hotel from "./pages/hotel"
-=======
 import AddTaxiReservation from "./pages/addTaxi"
->>>>>>> 002b686bba7cc274ae4cc0eb87be6747f2e6827d
 
 //admin panel
 import AdminPanel from "./pages/adminPanel"
