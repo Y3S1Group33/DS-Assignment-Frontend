@@ -14,7 +14,7 @@ function UpdateReservations() {
   const [date, setDate] = useState("");
 
   let data = {
-    userId: userId,
+    userId: params.id,
     roomType: roomType,
     description: description,
     numberOfRooms: numberOfRooms,
@@ -74,7 +74,6 @@ function UpdateReservations() {
             className="form-control"
             id="userId"
             value={reservation.userId}
-            onChange={(e) => setUserId(e.target.value)}
             readOnly
           />
         </div>
