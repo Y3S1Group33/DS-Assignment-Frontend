@@ -27,7 +27,14 @@ function Reservations() {
           if (res) {
             console.log(data);
             alert("Reservation created successfully");
+            if (window.confirm("Do you want to add taxi reservation")) {
+              
+                  window.location.href = "/addTaxi";
+                
+            } else {
               window.location.href="/paymentOption"
+            }
+             
           } else {
             alert("Some error occured");
           }

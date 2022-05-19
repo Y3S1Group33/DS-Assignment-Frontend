@@ -7,6 +7,7 @@ import Login from "./pages/login"
 import Register from "./pages/register"
 import Logout from "./pages/logout"
 import Profile from "./pages/profile"
+import AddTaxiReservation from "./pages/addTaxi"
 
 //admin panel
 import AdminPanel from "./pages/adminPanel"
@@ -50,6 +51,7 @@ function App() {
 
         <Route exact path="/adminUpdateTaxi/:id" element={<AdminTaxiReservationUpdate />} />
         <Route exact path="/adminTaxi" element={<AdminTaxiReservation />} />
+        <Route exact path="/addTaxi" element={<AddTaxiReservation />} />
         </Routes>
       </Router>
 </div>
