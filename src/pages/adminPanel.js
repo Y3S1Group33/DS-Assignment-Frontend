@@ -25,9 +25,9 @@ export default function AdminPanel() {
         <div class="card">
     <img class="card-img-top" src={imageUser} alt="Card image cap" />
     <div class="card-body">
-      <h5 class="card-title"> User Management</h5>
+      <h5 class="card-title">Hotel Management</h5>
       <p class="card-text">This is a action.</p>
-      <a href="/"><button className="btn btn-primary">Manage Users</button></a>
+      <a href="/viewHotel"><button className="btn btn-primary">Manage Hotel</button></a>
     </div>
   </div>
 

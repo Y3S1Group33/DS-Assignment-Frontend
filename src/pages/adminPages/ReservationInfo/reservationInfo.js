@@ -1,40 +1,41 @@
 import React from 'react'
 import axios from 'axios';
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function Hotel() {
-  const[id, setId] = useState("");
-  const [hotelName, setHotelName] = useState("");
+function ReservationInfo() {
+
+  const [id, setId] = useState("");
+  const [roomType, setRoomType] = useState("");
   const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [hotel, setHotel] = useState("");
+  const [availableRooms, setAvailableRooms] = useState("");
+  const [price, setPrice] = useState("");
+  const [reservationInfo, setReservationInfo] = useState("");
 
   let data = {
     id: id,
-    hotelName: hotelName,
+    roomType: roomType,
     description: description,
-    address: address,
-    telephone: telephone,
+    availableRooms: availableRooms,
+    price: price
   };
 
   useEffect(() => {
-    fetch("http://localhost:8080/hms/hotel")
+    fetch("http://localhost:8080/reservationInfo")
       .then((response) => response.json())
       .then((responseData) => {
-        setHotel(responseData);
+        setReservationInfo(responseData);
       });
-    console.log(hotel);
+    console.log(reservationInfo);
   }, []);
 
     let handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          let res = await axios.post("http://localhost:8080/hms/hotel", data);
+          let res = await axios.post("http://localhost:8080/reservationInfo", data);
           if (res) {
             console.log(data);
-            alert("Hotel added successfully");
+            alert("Reservation Added successfully");
           } else {
             alert("Some error occured");
           }
@@ -45,30 +46,31 @@ function Hotel() {
 
     return (
         <div className="container">
-           <br></br>
-          <h1 className="text-center">Add Hotel</h1>
+          <br></br>
+           <h1 className="text-center">Add Reservation</h1>
+          <br></br>
            <form className="form" onSubmit={handleSubmit}>
-{/* 
+
            <div className="form-group">
           <label >Reservation Info ID</label>
           <input
             type="text"
             className="form-control"
-            id="hotelId"
+            id="userId"
             value={id}
             onChange={(e) => setId(e.target.value)}
             disabled
             required />
-        </div> */}
+        </div>
         <div className="form-group">
-          <label >Hotel Name</label>
+          <label >Room Type</label>
           <input
             placeholder="Enter Hotel Name"
             type="text"
             className="form-control"
-            id="hotelName"
-            value={hotelName}
-            onChange={(e) => setHotelName(e.target.value)}
+            id="roomType"
+            value={roomType}
+            onChange={(e) => setRoomType(e.target.value)}
             required />
         </div>
 
@@ -84,37 +86,38 @@ function Hotel() {
         </div>
 
         <div className="form-group">
-          <label >Address</label>
+          <label >Available Rooms</label>
           <input
             className="form-control"
             id="availableRooms"
             rows="3"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            value={availableRooms}
+            onChange={(e) => setAvailableRooms(e.target.value)}
             required />
         </div>
 
         <div className="form-group">
-          <label >Telephone</label>
+          <label >Price</label>
           <input
             className="form-control"
             id="price"
             rows="3"
-            value={telephone}
-            onChange={(e) => setTelephone(e.target.value)}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             required />
         </div>
       <br></br>
-        <button type="submit" className="btn btn-primary">Add Hotel</button>
+        <button type="submit" className="btn btn-primary">Add Reservation</button>
        
       </form>
-
       <br></br>
-      <a href="/viewHotel"><button className="btn btn-primary">View Hotels</button></a>
+      <a href="/viewReservationInfo"><button className="btn btn-primary">View Reservation</button></a>
       <br></br><br></br>
-      <a href="/home"><button className="btn btn-primary">Back to Home</button></a> 
+      
+      <a href="/reservationInfo"><button className="btn btn-primary">Back to Home</button></a>
         </div>
+        
     )
 }
 
-export default Hotel
+export default ReservationInfo
