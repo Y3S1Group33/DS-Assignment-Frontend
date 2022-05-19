@@ -17,6 +17,8 @@ import LocalPaymentGateway from "./pages/clientPages/LocalPaymentGateway";
 import StripePaymentGateway from "./pages/clientPages/StripePaymentGateway";
 import UpdatePayment from "./pages/adminPages/Payments/UpdatePayment";
 import PaymentOptions from "./pages/clientPages/PaymentOptions";
+import AdminTaxiReservationUpdate from "./pages/adminPages/Taxi/updateTaxi";
+import AdminTaxiReservation from "./pages/adminPages/Taxi/adminTaxiReservations";
 
 
 
@@ -38,12 +40,16 @@ function App() {
         <Route exact path="/admin" element={<AdminPanel />} />
         <Route exact path="/adminReservations" element={<AdminReservations />} />
         <Route exact path="/adminUpdateReservations/:id" element={<AdminReservationsUpdate />} />
-            <Route exact path="/payments" element={<PaymentDashboard />} />
-            <Route exact path="/payments/local" element={<LocalPaymentGateway />} />
-            <Route exact path="/payments/stripe" element={<StripePaymentGateway />} />
-            <Route exact path="/paymentUpdate/:id" element={<UpdatePayment />} />
-            <Route exact path="/paymentOption" element={<PaymentOptions />} />
-            <Route exact path="/home" element={<Home />} />
+            
+        <Route exact path="/payments" element={<PaymentDashboard />} />
+        <Route exact path="/payments/local" element={<LocalPaymentGateway />} />
+        <Route exact path="/payments/stripe" element={<StripePaymentGateway />} />
+        <Route exact path="/paymentUpdate/:id" element={<UpdatePayment />} />
+        <Route exact path="/paymentOption" element={<PaymentOptions />} />
+        <Route exact path="/home" element={<Home />} />
+
+        <Route exact path="/adminUpdateTaxi/:id" element={<AdminTaxiReservationUpdate />} />
+        <Route exact path="/adminTaxi" element={<AdminTaxiReservation />} />
         </Routes>
       </Router>
 </div>
