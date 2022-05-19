@@ -20,21 +20,21 @@ function Reservations() {
   
   
 
-  let HandleSubmit = async (e) => {
-    
-    e.preventDefault();
-      try {
-      let res = await axios.post("http://localhost:8080/reservations", data);
-      if (res) {
-        console.log(data);
-        alert("Reservation created successfully");
-      } else {
-        alert("Some error occured");
-      }
-    } catch (err) {
-      console.log(err);
-      alert("Date already taken")
-    }
+    let handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          let res = await axios.post("http://localhost:8080/reservations", data);
+          if (res) {
+            console.log(data);
+            alert("Reservation created successfully");
+              window.location.href="/paymentOption"
+          } else {
+            alert("Some error occured");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
 
     
   };
@@ -117,18 +117,14 @@ function Reservations() {
             required
           />
         </div>
-        <br></br>
-        <button type="submit" className="btn btn-primary">
-          Add Reservation
-        </button>
+      <br></br>
+               <button type="submit" className="btn btn-primary">Add Reservation</button>
+
       </form>
-      <br></br>
-      <br></br>
-      <a href="/">
-        <button className="btn btn-primary">Back to Home</button>
-      </a>
-    </div>
-  );
+      <br></br><br></br>
+      <a href=""><button className="btn btn-primary">Back to Home</button></a>
+        </div>
+    )
 }
 
 export default Reservations;
