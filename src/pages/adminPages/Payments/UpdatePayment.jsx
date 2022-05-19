@@ -12,21 +12,34 @@ const UpdatePayment = () => {
     const[cvc,updateCvc]=useState("")
     const[expDate,updateExpDate]=useState("")
     useEffect(() => {
-        axios.get(`http://localhost:8080/payments/?id=${params.id}`).then(res => {
+        axios.get(`http://localhost:8080/payments/getById?id=${params.id}`).then(res=>{
             console.log(res.data)
             setPayment(res.data)
-        }).catch(err => {
-            console.log(err);
         })
-    }, [])
-    const cardHolderName=(e)=>{
-        console.log(e.target.value)
+    }, []);
+
+    const requestBody={
+        cardHolderName:holderName,
+        creditCardNumber:cardNumber,
+        cvc:cvc,
+        expDate:expDate
+    }
+
+
+    const updateRecord=(e)=>{
+        e.preventDefault()
+
+        axios.put(`http://localhost:8080/payments?id=${params.id}`,requestBody).then(res=>{
+            console.log("post data on update"+res.data)
+            window.location.href="/payments"
+            //setCardHolderName(res.data.cardHolderName)
+        }).catch(err=>{
+            console.log(err)
+        })
     }
     return (
         <div>
-            {
-                payment.map(payment=>{
-                    return(
+
                         <div >
                             <div className="wrapper">
                                 <form className="form-signin">
@@ -47,15 +60,13 @@ const UpdatePayment = () => {
                                     <input type="text" className="form-control" placeholder={payment.expDate} onChange={(e)=>{
                                         updateExpDate(e.target.value)
                                     }} required=""/>
-                                    <button className="btn btn-lg btn-dark btn-block btn-submit">Update Record</button>
+                                    <button onClick={updateRecord} className="btn btn-lg btn-dark btn-block btn-submit">Update Record</button>
                                 </form>
                             </div>
 
 
                         </div>
-                    )
-                })
-            }
+
         </div>
     );
 };

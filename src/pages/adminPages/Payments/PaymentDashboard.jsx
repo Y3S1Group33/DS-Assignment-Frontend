@@ -32,8 +32,8 @@ const PaymentDashboard = () => {
                         <th scope="col">Credit card Numbere</th>
                         <th scope="col">CVC</th>
                         <th scope="col">EXP Date</th>
-                        <th scope="col">Update</th>
                         <th scope="col">Delete</th>
+                        <th scope="col">Update</th>
 
                     </tr>
 </thead>
@@ -48,12 +48,8 @@ const PaymentDashboard = () => {
                                 <td>{payment.expDate}</td>
 
                                 <td>
-                                    <button onClick={deleteRecord} value={payment.id}>Delete me</button>
-                                    {/*<button  className="btn btn btn-danger">*/}
+                                    <button className="btn btn-danger" onClick={deleteRecord} value={payment.id}>Delete</button>
 
-                                    {/*    <Link to={`/PaymentDelete/${payment.id}`} className="btn btn-success">Delete*/}
-                                    {/*    </Link>*/}
-                                    {/*</button>*/}
                                 </td>
                                 <td>
                                     <button className="btn btn-success"  >
