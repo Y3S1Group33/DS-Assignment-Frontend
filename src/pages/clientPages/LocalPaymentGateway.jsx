@@ -23,12 +23,12 @@ const LocalPaymentGateway = () => {
         e.preventDefault()
 
 
-        // axios.post("http://localhost:8080/payments",requestBody).then(res=>{
-        //     console.log(res.data)
-        //     //setCardHolderName(res.data.cardHolderName)
-        // }).catch(err=>{
-        //     console.log(err)
-        // })
+        axios.post("http://localhost:8080/payments",requestBody).then(res=>{
+            console.log(res.data)
+            //setCardHolderName(res.data.cardHolderName)
+        }).catch(err=>{
+            console.log(err)
+        })
 
         emailjs.sendForm('service_js8nvc9', 'template_yabaem9', form.current, '1asUfQ-WtKRiuysnb')
             .then((result) => {
@@ -36,6 +36,7 @@ const LocalPaymentGateway = () => {
             }, (error) => {
                 console.log(error.text);
             });
+        window.location.href="/reservations"
     }
 
     return (

@@ -66,7 +66,7 @@ const PaymentDashboard = () => {
                     })}
                 </table>
 
-                <a href="/reservations">Back To Main Menu<button className="btn btn-primary"></button></a>
+                <a href="/admin"><button className="btn btn-primary">Back To Main Menu</button></a>
             </div>
         </div>
     );

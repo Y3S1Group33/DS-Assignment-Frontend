@@ -27,6 +27,7 @@ function Reservations() {
           if (res) {
             console.log(data);
             alert("Reservation created successfully");
+              window.location.href="/paymentOption"
           } else {
             alert("Some error occured");
           }
@@ -109,11 +110,11 @@ function Reservations() {
             required />
         </div>
       <br></br>
-        <button type="submit" className="btn btn-primary">Add Reservation</button>
-       
+               <button type="submit" className="btn btn-primary">Add Reservation</button>
+
       </form>
       <br></br><br></br>
-      <a href="/"><button className="btn btn-primary">Back to Home</button></a>
+      <a href=""><button className="btn btn-primary">Back to Home</button></a>
         </div>
     )
 }

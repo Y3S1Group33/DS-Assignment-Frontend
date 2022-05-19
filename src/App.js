@@ -16,6 +16,7 @@ import PaymentDashboard from "./pages/adminPages/Payments/PaymentDashboard";
 import LocalPaymentGateway from "./pages/clientPages/LocalPaymentGateway";
 import StripePaymentGateway from "./pages/clientPages/StripePaymentGateway";
 import UpdatePayment from "./pages/adminPages/Payments/UpdatePayment";
+import PaymentOptions from "./pages/clientPages/PaymentOptions";
 
 
 
@@ -41,6 +42,7 @@ function App() {
             <Route exact path="/payments/local" element={<LocalPaymentGateway />} />
             <Route exact path="/payments/stripe" element={<StripePaymentGateway />} />
             <Route exact path="/paymentUpdate/:id" element={<UpdatePayment />} />
+            <Route exact path="/paymentOption" element={<PaymentOptions />} />
             <Route exact path="/home" element={<Home />} />
         </Routes>
       </Router>
