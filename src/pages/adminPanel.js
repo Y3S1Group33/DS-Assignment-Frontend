@@ -45,7 +45,7 @@ export default function AdminPanel() {
     <div class="card-body">
       <h5 class="card-title">Payments Management</h5>
       <p class="card-text">This is a action.</p>
-      <a href="/"><button className="btn btn-primary">Manage Payments</button></a>
+      <a href="/payments"><button className="btn btn-primary">Manage Payments</button></a>
     </div>
   </div>
 
@@ -54,7 +54,7 @@ export default function AdminPanel() {
     <div class="card-body">
       <h5 class="card-title">Transportation Management</h5>
       <p class="card-text">This is a action.</p>
-      <a href="/"><button className="btn btn-primary">Manage Taxi</button></a>
+      <a href="/adminTaxi"><button className="btn btn-primary">Manage Taxi</button></a>
     </div>
   </div>
 

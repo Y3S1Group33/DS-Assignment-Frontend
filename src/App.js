@@ -7,7 +7,11 @@ import Login from "./pages/login"
 import Register from "./pages/register"
 import Logout from "./pages/logout"
 import Profile from "./pages/profile"
+<<<<<<< HEAD
 import Hotel from "./pages/hotel"
+=======
+import AddTaxiReservation from "./pages/addTaxi"
+>>>>>>> 002b686bba7cc274ae4cc0eb87be6747f2e6827d
 
 //admin panel
 import AdminPanel from "./pages/adminPanel"
@@ -16,11 +20,11 @@ import AdminReservationsUpdate from "./pages/adminPages/Reservations/updateReser
 import PaymentDashboard from "./pages/adminPages/Payments/PaymentDashboard";
 import LocalPaymentGateway from "./pages/clientPages/LocalPaymentGateway";
 import StripePaymentGateway from "./pages/clientPages/StripePaymentGateway";
-import ReservationInfo from './pages/adminPages/ReservationInfo/reservationInfo';
-import UpdateReservationInfo from './pages/adminPages/ReservationInfo/updateReservationInfo';
-import UpdateHotel from './pages/updateHotel'
-import HotelView from './pages/hotelView';
-import ReservationInfoView from './pages/adminPages/ReservationInfo/viewReservation';
+import UpdatePayment from "./pages/adminPages/Payments/UpdatePayment";
+import PaymentOptions from "./pages/clientPages/PaymentOptions";
+import AdminTaxiReservationUpdate from "./pages/adminPages/Taxi/updateTaxi";
+import AdminTaxiReservation from "./pages/adminPages/Taxi/adminTaxiReservations";
+
 
 
 
@@ -41,16 +45,17 @@ function App() {
         <Route exact path="/admin" element={<AdminPanel />} />
         <Route exact path="/adminReservations" element={<AdminReservations />} />
         <Route exact path="/adminUpdateReservations/:id" element={<AdminReservationsUpdate />} />
-            <Route exact path="/payments" element={<PaymentDashboard />} />
-            <Route exact path="/payments/local" element={<LocalPaymentGateway />} />
-            <Route exact path="/payments/stripe" element={<StripePaymentGateway />} />
-            <Route exact path="/home" element={<Home />} />
-            <Route exact path="/hotel" element={<Hotel />} />
-            <Route exact path="/reservationInfo" element={<ReservationInfo />} />
-            <Route exact path="/updateReservationInfo/:id" element={<UpdateReservationInfo />} />
-            <Route exact path="/updateHotel/:id" element={<UpdateHotel />} />
-            <Route exact path="/viewHotel" element={<HotelView />} />
-            <Route exact path="/viewReservationInfo" element={<ReservationInfoView />} />
+            
+        <Route exact path="/payments" element={<PaymentDashboard />} />
+        <Route exact path="/payments/local" element={<LocalPaymentGateway />} />
+        <Route exact path="/payments/stripe" element={<StripePaymentGateway />} />
+        <Route exact path="/paymentUpdate/:id" element={<UpdatePayment />} />
+        <Route exact path="/paymentOption" element={<PaymentOptions />} />
+        <Route exact path="/home" element={<Home />} />
+
+        <Route exact path="/adminUpdateTaxi/:id" element={<AdminTaxiReservationUpdate />} />
+        <Route exact path="/adminTaxi" element={<AdminTaxiReservation />} />
+        <Route exact path="/addTaxi" element={<AddTaxiReservation />} />
         </Routes>
       </Router>
 </div>

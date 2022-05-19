@@ -3,35 +3,32 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function UpdateReservations() {
+function UpdateTaxi() {
   const params = useParams();
-  const [reservation, setReservation] = useState("");
-  const [userId, setUserId] = useState("");
-  const [roomType, setRoomType] = useState("");
-  const [description, setDescription] = useState("");
-  const [numberOfRooms, setNumberOfRooms] = useState("");
-  const [price, setPrice] = useState("");
-  const [date, setDate] = useState("");
+  const [Taxi, setTaxi] = useState("");
+  const [driverName, setdriverName] = useState("");
+  const [vehicleType, setvehicleType] = useState("");
+  const [reservationId, setreservationId] = useState("");
+  const [contactNumber, setcontactNumber] = useState("");
 
   let data = {
-    userId: params.id,
-    roomType: roomType,
-    description: description,
-    numberOfRooms: numberOfRooms,
-    price: price,
-    date: date,
+    taxiId: params.id,
+    driverName: driverName,
+    vehicleType: vehicleType,
+    reservationId: reservationId,
+    contactNumber: contactNumber,
   };
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let res = await axios.put(
-        `http://localhost:8080/reservations?id=${params.id}`,
+        `http://localhost:8080/taxi?id=${params.id}`,
         data
       );
       if (res) {
         console.log(data);
-        alert("Reservation updated successfully");
+        alert("Taxi Reservation updated successfully");
       } else {
         alert("Some error occured");
       }
@@ -41,21 +38,21 @@ function UpdateReservations() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8080/reservations/getById?id=${params.id}`)
+    fetch(`http://localhost:8080/taxi/getById?id=${params.id}`)
       .then((response) => response.json())
       .then((responseData) => {
-        setReservation(responseData);
+        setTaxi(responseData);
       });
-    console.log(reservation);
+    console.log(Taxi);
   }, []);
 
   const onDelete = () => {
     if (window.confirm("Do you want to delete this")) {
       axios
-        .delete(`http://localhost:8080/reservations?id=${params.id}`)
+        .delete(`http://localhost:8080/taxi?id=${params.id}`)
         .then((res) => {
           alert("Deleted successfuly");
-          window.location.href = "/adminReservations";
+          window.location.href = "/adminTaxi";
         });
     } else {
       alert("Record not deleted");
@@ -64,72 +61,60 @@ function UpdateReservations() {
 
   return (
     <div className="container">
-      <h1 className="text-center">Update Reservation</h1>
+      <h1 className="text-center">Update Taxi Reservation</h1>
 
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>User ID</label>
+          <label>Taxi ID</label>
           <input
             type="text"
             className="form-control"
-            id="userId"
-            value={reservation.userId}
+            id="taxiId"
+            value={Taxi.taxiId}
             readOnly
           />
         </div>
         <div className="form-group">
-          <label>Room Type</label>
+          <label>Driver Name</label>
           <input
             type="text"
             className="form-control"
-            id="roomType"
-            placeholder={reservation.roomType}
-            onChange={(e) => setRoomType(e.target.value)}
+            id="driverName"
+            placeholder={Taxi.driverName}
+            onChange={(e) => setdriverName(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-          <label>Description</label>
-          <textarea
-            className="form-control"
-            id="description"
-            rows="3"
-            placeholder={reservation.description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label>Number of rooms</label>
+          <label>Vehicle Type</label>
           <input
             className="form-control"
-            id="numberOfRooms"
+            id="vehicleType"
             rows="3"
-            placeholder={reservation.numberOfRooms}
-            onChange={(e) => setNumberOfRooms(e.target.value)}
+            placeholder={Taxi.vehicleType}
+            onChange={(e) => setvehicleType(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-          <label>Price</label>
+          <label>Reservation ID</label>
           <input
             className="form-control"
-            id="price"
+            id="reservationId"
             rows="3"
-            placeholder={reservation.price}
-            onChange={(e) => setPrice(e.target.value)}
+            placeholder={Taxi.reservationId}
+            onChange={(e) => setreservationId(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-          <label>Date</label>
+          <label>Contact Number</label>
           <input
-            type="text"
             className="form-control"
-            id="date"
+            id="contactNumber"
             rows="3"
-            placeholder={reservation.date}
-            onChange={(e) => setDate(e.target.value)}
+            placeholder={Taxi.contactNumber}
+            onChange={(e) => setcontactNumber(e.target.value)}
             required
           />
         </div>
@@ -153,4 +138,4 @@ function UpdateReservations() {
   );
 }
 
-export default UpdateReservations;
+export default UpdateTaxi;

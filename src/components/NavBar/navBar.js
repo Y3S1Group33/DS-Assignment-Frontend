@@ -1,7 +1,30 @@
 import React, { useEffect, useState } from "react";
+import "./navBar.css"
 
 function NavBar() {
   const [loggedUser, setLoggedUser] = useState([]);
+  const [Reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/reservations")
+      .then((response) => response.json())
+      .then((responseData) => {
+        setReservations(responseData);
+      });
+    console.log(Reservations);
+  }, []);
+
+  
+
+  const loggedUserReservations = [];
+  
+  for (let i=0; i<Reservations.length;i++){
+    if(Reservations[i].userId == loggedUser.id){
+      loggedUserReservations.push(Reservations[i])  
+    }
+  }
+
+  const count = loggedUserReservations.length;
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -52,13 +75,17 @@ function NavBar() {
               </li>
               )}
               
+              {(loggedUser !== null) && (
               <li className="nav-item">
                 <a className="nav-link" href="/login">
                   Login
                 </a>
               </li>
+              )}
+
             </ul>
-            {(loggedUser) && (
+
+            {(loggedUser != null) && (
             <div className="dropdown">
               <button
                 className="btn btn-secondary dropdown-toggle"
@@ -69,6 +96,7 @@ function NavBar() {
                 aria-expanded="false"
               >
                 {loggedUser.firstName}
+                <span className="nav-values"> {count} </span>
               </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a className="dropdown-item" href="/profile">
@@ -78,6 +106,7 @@ function NavBar() {
                   Logout
                 </a>
               </div>
+              
             </div>
             )}
           </div>
