@@ -61,11 +61,11 @@ function NavBar() {
                 </a>
               </li>
 
-              <li className="nav-item">
-                <a className="nav-link" href="/reservations">
-                  Reservations
-                </a>
-              </li>
+              {/*<li className="nav-item">*/}
+              {/*  <a className="nav-link" href="/reservations">*/}
+              {/*    Reservations*/}
+              {/*  </a>*/}
+              {/*</li>*/}
 
               {(loggedUser.role == "Admin") && (
               <li className="nav-item">
