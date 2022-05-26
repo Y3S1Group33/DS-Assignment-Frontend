@@ -1,4 +1,3 @@
-
 import {loadStripe} from "@stripe/stripe-js";
 import "../../CSS/payment.css";
 import {useEffect} from "react";
@@ -12,7 +11,6 @@ const getStripe = () => {
 
     return stripePromise;
 };
-
 
 const StripePaymentGateway = () => {
 
@@ -34,17 +32,6 @@ const StripePaymentGateway = () => {
         const {error} =await stripe.redirectToCheckout(checkoutOptions);
     })
 
-
-    // const redirectToCheckout = async () => {
-    //
-    //     console.log("redirectToCheckout");
-    //
-    //     const stripe = await getStripe();
-    //     const {error} = await stripe.redirectToCheckout(checkoutOptions);
-    //     console.log("Stripe checkout error", error);
-    //
-    //
-    // };
     return (
         <div className="checkout">
             <h1>Stripe Checkout</h1>
@@ -52,12 +39,6 @@ const StripePaymentGateway = () => {
 
             <h1 className="checkout-price">$19</h1>
 
-            {/*<button onClick={redirectToCheckout}>*/}
-
-            {/*    <div className="text-container">*/}
-            {/*        <p className="text">Pay with Stripe</p>*/}
-            {/*    </div>*/}
-            {/*</button>*/}
         </div>
     );
 };
