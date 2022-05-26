@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
+import paymentBackground from "../../../images/paymentBackground.png";
 
 
 const UpdatePayment = () => {
@@ -14,7 +16,7 @@ const UpdatePayment = () => {
         axios.get(`http://localhost:8080/payments/getById?id=${params.id}`).then(res=>{
             console.log(res.data)
             setPayment(res.data)
-            alert("RECORD UPDATED")
+
         })
     }, []);
 
@@ -26,19 +28,21 @@ const UpdatePayment = () => {
     }
 
 
-    const updateRecord=(e)=>{
-        e.preventDefault()
-
+    const updateRecord=async (e)=>{
+        e.preventDefault();
+        await swal("Record Deleted successfully","press ok to continue","success")
         axios.put(`http://localhost:8080/payments?id=${params.id}`,requestBody).then(res=>{
-            console.log("post data on update"+res.data)
-            window.location.href="/payments"
+            console.log("post data on update"+res.data);
+
             //setCardHolderName(res.data.cardHolderName)
         }).catch(err=>{
             console.log(err)
         })
+        window.location.href="/payments"
     }
     return (
-        <div>
+        <div style={{
+            backgroundImage:`url(${paymentBackground})`,backgroundSize:"cover",backgroundPosition:"bottom"}}>
 
                         <div >
                             <div className="wrapper">

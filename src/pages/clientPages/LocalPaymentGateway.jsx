@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 import "../../CSS/payment.css";
 import axios from "axios";
 import swal from 'sweetalert';
-
+import paymentBackground from "../../images/paymentBackground.png"
 const LocalPaymentGateway = () => {
     const form = useRef();
     const[email,updateEmail]=useState("")
@@ -59,15 +59,14 @@ const LocalPaymentGateway = () => {
         //     swal("Good job!", "You clicked the button!", "error");
         // }
 
-
-
     }
 
     return (
 
-        <div>
-            <div className="wrapper">
-                <form ref={form} className="form-signin">
+        <div style={{
+            backgroundImage:`url(${paymentBackground})`,backgroundSize:"cover",backgroundPosition:"bottom"}}>
+            <div className="wrapper" >
+                <form ref={form} className="form-signin" >
                     <h2 className="form-signin-heading text-center">Payments Form</h2>
                     <input type="email" name="email" className="form-control" placeholder="Email" onChange={(e)=>{
                         updateEmail(e.target.value)

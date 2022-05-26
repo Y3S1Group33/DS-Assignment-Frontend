@@ -10,10 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import hotelBackground from "../images/hotelBackground.jpg"
+import hotelItem from "../images/hotelItem.jpg";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    justifyContent:"center"
   },
   media: {
     height: 140,
@@ -43,12 +46,14 @@ export default function Home() {
     console.log(hotel);
   }, []);
   return (
-    <div >
+    <div style={{
+      backgroundImage:`url(${hotelBackground})`,backgroundSize:"cover"}} >
     <Grid container direction='row' className={classes.maingrid} >
     {hotel.map((hotel) => {
       return (
-        <Grid item xs={4} justifyContent='center' className={classes.grid}>
-        <Card className={classes.root}>
+        <Grid  item xs={4} justifyContent='center' className={classes.grid}>
+        <Card style={{
+          backgroundImage:`url(${hotelItem})`,backgroundSize:"cover",textAlign:"center",paddingBottom:"50px",marginTop:"50px"}} className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -66,7 +71,7 @@ export default function Home() {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.root}>
                   <Link to={`/reservations/${hotel.id}`} className="btn btn-primary">View Details
                             </Link>
       

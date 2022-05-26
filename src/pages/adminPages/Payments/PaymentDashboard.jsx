@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import swal from "sweetalert";
+import paymentBackground from "../../../images/paymentBackground.png";
 
 const PaymentDashboard = () => {
     const [payment, setPayment] = useState([])
@@ -13,34 +15,44 @@ const PaymentDashboard = () => {
             console.log(err);
         })
     }, [])
-    const deleteRecord=(e)=>{
+    const deleteRecord=async (e)=>{
         let id=e.currentTarget.value;
-        axios.delete(`http://localhost:8080/payments?id=${id}`).then(alert("RECORD DELETED")).then(window.location.href="/payments").catch(err=>{
+       await swal("Record Deleted successfully","press ok to continue","success")
+        axios.delete(`http://localhost:8080/payments?id=${id}`).then(window.location.href="/payments").catch(err=>{
             console.log(err)
         })
-
     }
     return (
-        <div>
-            <h1 className="text-center">Payment Dashboard</h1>
+        <div style={{
+            backgroundImage:`url(${paymentBackground})`,backgroundPositionY:"bottom"}}>
+            <h1 className="text-center" style={{
+                color:"white"}}>Payment Dashboard</h1>
             <div className="container">
                 <table className="table">
 <thead>
                     <tr>
-                        <th scope="col">Payment ID</th>
-                        <th scope="col">Card Holders Name</th>
-                        <th scope="col">Credit card Numbere</th>
-                        <th scope="col">CVC</th>
-                        <th scope="col">EXP Date</th>
-                        <th scope="col">Delete</th>
-                        <th scope="col">Update</th>
+                        <th style={{
+                            color:"white"}} scope="col">Payment ID</th>
+                        <th style={{
+                            color:"white"}} scope="col">Card Holders Name</th>
+                        <th style={{
+                            color:"white"}} scope="col">Credit card Numbere</th>
+                        <th style={{
+                            color:"white"}} scope="col">CVC</th>
+                        <th style={{
+                            color:"white"}} scope="col">EXP Date</th>
+                        <th style={{
+                            color:"white"}} scope="col">Delete</th>
+                        <th style={{
+                            color:"white"}} scope="col">Update</th>
 
                     </tr>
 </thead>
                     {payment.map(payment => {
                         return (
                             <tbody>
-                            <tr>
+                            <tr style={{
+                                color:"white"}}>
                                 <td>{payment.id}</td>
                                 <td>{payment.cardHolderName}</td>
                                 <td>{payment.creditCardNumber}</td>
