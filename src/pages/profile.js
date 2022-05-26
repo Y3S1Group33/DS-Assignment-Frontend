@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import ReservationCard from "../components/Reservation/reservationCard"
+import ReservationCard from "../components/Reservation/reservationCard";
+import TaxiReservationCards from "../components/Reservation/taxiReservationCards";
 
 export default function Profile() {
   const [loggedUser, setLoggedUser] = useState([]);
   const [Reservations, setReservations] = useState([]);
+  const [TaxiReservations, setTaxiReservations] = useState([]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -21,6 +23,15 @@ export default function Profile() {
     console.log(Reservations);
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:8080/taxi")
+        .then((response) => response.json())
+        .then((responseData) => {
+          setTaxiReservations(responseData);
+        });
+    console.log(TaxiReservations);
+  }, []);
+
   
 
   const loggedUserReservations = [];
@@ -31,7 +42,10 @@ export default function Profile() {
     }
   }
 
+
+
   const count = loggedUserReservations.length;
+  // const taxiCount = loggedUserTaxiReservations.length;
 
   return (
     <div className="container">
@@ -68,7 +82,25 @@ export default function Profile() {
               </div>
             );
           })}
+
+      <h1 className="text-center">My Taxi Reservations</h1>
+
+      {(TaxiReservations==0) && (
+          <div><h3 className="text-center">You dont have any taxi reservations</h3></div>
+      )
+      }
+
+
+      {TaxiReservations.map((item) => {
+        return (
+            <div>
+              <TaxiReservationCards id={item.id} driverName={item.driverName} vehicleType={item.vehicleType} reservationId={item.reservationId} contactNumber={item.contactNumber} />
+            </div>
+        );
+      })}
     
     </div>
+
+
   );
 }

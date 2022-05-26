@@ -3,7 +3,6 @@ import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 
 
-
 const UpdatePayment = () => {
     const params=useParams()
     const [payment, setPayment] = useState([]);
@@ -15,6 +14,7 @@ const UpdatePayment = () => {
         axios.get(`http://localhost:8080/payments/getById?id=${params.id}`).then(res=>{
             console.log(res.data)
             setPayment(res.data)
+            alert("RECORD UPDATED")
         })
     }, []);
 
