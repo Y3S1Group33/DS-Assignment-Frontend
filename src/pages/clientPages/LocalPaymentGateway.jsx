@@ -54,7 +54,7 @@ const LocalPaymentGateway = () => {
                 }, (error) => {
                     console.log(error.text);
                 });
-            //window.location.href="/reservations"
+            window.location.href="/reservations"
         // }else{
         //     swal("Good job!", "You clicked the button!", "error");
         // }
