@@ -2,9 +2,10 @@ import React, {useRef, useState} from 'react';
 import emailjs from '@emailjs/browser';
 import "../../CSS/payment.css";
 import axios from "axios";
+import swal from 'sweetalert';
+
 const LocalPaymentGateway = () => {
     const form = useRef();
-
     const[email,updateEmail]=useState("")
     const[holderName,updateHolderName]=useState("")
     const[cardNumber,updateCardNumber]=useState("")
@@ -19,24 +20,47 @@ const LocalPaymentGateway = () => {
     }
 
 
-    const SetPayments=(e)=>{
+    const SetPayments=async (e)=>{
         e.preventDefault()
 
+        if (email.includes("@", 0) && email.includes(".com")) {
 
-        axios.post("http://localhost:8080/payments",requestBody).then(res=>{
-            console.log(res.data)
-            //setCardHolderName(res.data.cardHolderName)
-        }).catch(err=>{
-            console.log(err)
-        })
+        }
+            else{
+                swal("Invalid Email", "check and try again", "error");
+                return null;
+            }
 
-        emailjs.sendForm('service_js8nvc9', 'template_yabaem9', form.current, '1asUfQ-WtKRiuysnb')
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
-            });
-        window.location.href="/reservations"
+        if (cvc.length < 3) {
+            swal("Invalid CVC", "check and try again", "error");
+            return null;
+        }
+        if (cvc.length > 3) {
+            swal("Invalid CVC", "check and try again", "error");
+            return null;
+        }
+
+        // if(email.includes("@", 0) && cvc.length>3){
+            axios.post("http://localhost:8080/payments",requestBody).then(res=>{
+                console.log(res.data)
+                //setCardHolderName(res.data.cardHolderName)
+            }).catch(err=>{
+                console.log(err)
+            })
+
+            await emailjs.sendForm('service_js8nvc9', 'template_yabaem9', form.current, '1asUfQ-WtKRiuysnb')
+                .then((result) => {
+                    console.log(result.text);
+                }, (error) => {
+                    console.log(error.text);
+                });
+            //window.location.href="/reservations"
+        // }else{
+        //     swal("Good job!", "You clicked the button!", "error");
+        // }
+
+
+
     }
 
     return (

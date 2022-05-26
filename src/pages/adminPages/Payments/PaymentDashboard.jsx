@@ -15,7 +15,7 @@ const PaymentDashboard = () => {
     }, [])
     const deleteRecord=(e)=>{
         let id=e.currentTarget.value;
-        axios.delete(`http://localhost:8080/payments?id=${id}`).then(alert("success")).then(window.location.href="/payments").catch(err=>{
+        axios.delete(`http://localhost:8080/payments?id=${id}`).then(alert("RECORD DELETED")).then(window.location.href="/payments").catch(err=>{
             console.log(err)
         })
 
