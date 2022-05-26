@@ -1,15 +1,26 @@
 import React from 'react'
 import axios from 'axios';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function Reservations() {
 
+const params = useParams();
   const [userId, setUserId] = useState("");
   const [roomType, setRoomType] = useState("");
   const [description, setDescription] = useState("");
   const [numberOfRooms, setNumberOfRooms] = useState("");
   const [price, setPrice] = useState("");
   const [date, setDate] = useState("");
+  const [reservationInfo, setReservationInfo] = useState([]);
+
+  // let data = {
+  //   id: id,
+  //   roomType: roomType,
+  //   description: description,
+  //   availableRooms: availableRooms,
+  //   price: price
+  // };
 
   let data = {
     userId: userId,
@@ -19,6 +30,7 @@ function Reservations() {
     price: price,
     date: date,
   };
+
 
     let handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,6 +56,15 @@ function Reservations() {
         }
       };
 
+      useEffect(() => {
+        fetch(`http://localhost:8080/reservationInfo/${params.id}`)
+          .then((response) => response.json())
+          .then((responseData) => {
+            setReservationInfo(responseData);
+          });
+        console.log(reservationInfo);
+      }, []);
+
     return (
         <div className="container">
            <h1 className="text-center">Add Reservation</h1>
@@ -68,7 +89,7 @@ function Reservations() {
             type="text"
             className="form-control"
             id="roomType"
-            value={roomType}
+            value={reservationInfo.roomType}
             onChange={(e) => setRoomType(e.target.value)}
             required />
         </div>
@@ -79,7 +100,7 @@ function Reservations() {
             className="form-control"
             id="description"
             rows="3"
-            value={description}
+            value={reservationInfo.description}
             onChange={(e) => setDescription(e.target.value)}
             required></textarea>
         </div>
@@ -101,7 +122,7 @@ function Reservations() {
             className="form-control"
             id="price"
             rows="3"
-            value={price}
+            value={reservationInfo.price}
             onChange={(e) => setPrice(e.target.value)}
             required />
         </div>

@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -17,13 +18,22 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
+  maingrid: {
+    marginLeft: '75px',
+    marginBottom: '35px',
+  },
+  grid: {
+    marginBottom: '35px',
+
+  }
+
 });
 
 
 
 export default function Home() {
   const classes = useStyles();
-  const [hotel, setHotel] = useState("");
+  const [hotel, setHotel] = useState([]);
   useEffect(() => {
     fetch("http://localhost:8080/hms/hotel")
       .then((response) => response.json())
@@ -33,16 +43,16 @@ export default function Home() {
     console.log(hotel);
   }, []);
   return (
-    
-    <Grid container direction='row' alignItems='center'>
+    <div >
+    <Grid container direction='row' className={classes.maingrid} >
     {hotel.map((hotel) => {
-              return (
-        <Grid item xs={4} justifyContent='center'>
+      return (
+        <Grid item xs={4} justifyContent='center' className={classes.grid}>
         <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image="./images/1.jpg"
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -50,27 +60,23 @@ export default function Home() {
             {hotel.hotelName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-           <h1> {hotel.description}</h1>
-           <h1> {hotel.address}</h1>
-           <h1> {hotel.telephone}</h1>
+           <h3> {hotel.description}</h3>
+           <h3> {hotel.address}</h3>
+           <h3> {hotel.telephone}</h3>
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+                  <Link to={`/reservations/${hotel.id}`} className="btn btn-primary">View Details
+                            </Link>
+      
       </CardActions>
     </Card>
         </Grid>
         );
-          })}
+    })}
     </Grid>
-
     
-    
+    </div>
   );
 }

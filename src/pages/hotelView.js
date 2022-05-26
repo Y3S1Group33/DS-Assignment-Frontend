@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function HotelView() {
   
-  const [hotel, setHotel] = useState("");
+  const [hotel, setHotel] = useState([]);
 
   
 
@@ -55,10 +55,11 @@ function HotelView() {
           })}
           </table>
           <br></br><br></br>
-          <h1 className="text-center">Add Hotel</h1>
-           
+          <a href="/addHotel"><button className="btn btn-primary">Add Hotel</button></a>
       <br></br><br></br>
-      <a href="/hotel"><button className="btn btn-primary">Back to Home</button></a>
+      <a href="/reservationInfo"><button className="btn btn-primary">Add ReservationInfo</button></a>
+      <br></br><br></br>
+      <a href="/home"><button className="btn btn-primary">Back to Home</button></a>
         </div>
     )
 }

@@ -35,6 +35,7 @@ function Hotel() {
           if (res) {
             console.log(data);
             alert("Hotel added successfully");
+            window.location.href="/viewHotel" 
           } else {
             alert("Some error occured");
           }

@@ -3,14 +3,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function UpdateReservationInfo() {
+function UpdateHotel() {
   const params = useParams();
   const[id, setId] = useState("");
   const [hotelName, setHotelName] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [telephone, setTelephone] = useState("");
-  const [hotel, setHotel] = useState("");
+  const [hotel, setHotel] = useState([]);
 
   let data = {
     id: id,
@@ -63,7 +63,7 @@ function UpdateReservationInfo() {
 
   return (
     <div className="container">
-      <h1 className="text-center">Update Reservation</h1>
+      <h1 className="text-center">Update Hotel</h1>
 
       <form className="form" onSubmit={handleSubmit}>
 
@@ -141,4 +141,4 @@ function UpdateReservationInfo() {
   );
 }
 
-export default UpdateReservationInfo;
+export default UpdateHotel;

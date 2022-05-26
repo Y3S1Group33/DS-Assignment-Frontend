@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function ReservationInfoView() {
 
-  const [reservationInfo, setReservationInfo] = useState("");
+  const [reservationInfo, setReservationInfo] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:8080/reservationInfo").then(res => {

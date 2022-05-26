@@ -47,11 +47,11 @@ function ReservationInfo() {
     return (
         <div className="container">
           <br></br>
-           <h1 className="text-center">Add Reservation</h1>
+           <h1 className="text-center">Add Reservation Infomation</h1>
           <br></br>
            <form className="form" onSubmit={handleSubmit}>
 
-           <div className="form-group">
+           {/* <div className="form-group">
           <label >Reservation Info ID</label>
           <input
             type="text"
@@ -61,7 +61,7 @@ function ReservationInfo() {
             onChange={(e) => setId(e.target.value)}
             disabled
             required />
-        </div>
+        </div> */}
         <div className="form-group">
           <label >Room Type</label>
           <input
@@ -107,7 +107,7 @@ function ReservationInfo() {
             required />
         </div>
       <br></br>
-        <button type="submit" className="btn btn-primary">Add Reservation</button>
+        <button type="submit" className="btn btn-primary">Add ReservationInfo</button>
        
       </form>
       <br></br>
